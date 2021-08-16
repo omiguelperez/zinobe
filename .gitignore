@@ -130,5 +130,6 @@ dmypy.json
 
 
 # Zinobe
-data.json
+out/data.json
+out/db.sqlite3
 .idea/

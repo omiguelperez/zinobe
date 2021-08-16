@@ -1,10 +1,11 @@
+import os
 import sqlite3
 from datetime import datetime
-from sqlite3 import Error
+from sqlite3.dbapi2 import Error
 
 
 def get_connection():
-    connection = sqlite3.connect('db.sqlite3')
+    connection = sqlite3.connect('out/db.sqlite3')
     return connection
 
 
