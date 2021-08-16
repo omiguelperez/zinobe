@@ -1,4 +1,5 @@
 import json
+import os
 import time
 from hashlib import sha1
 import pandas as pd
@@ -16,7 +17,7 @@ class RapidAPIClient:
         url = "https://restcountries-v1.p.rapidapi.com/all"
 
         headers = {
-            'x-rapidapi-key': "xxxx",
+            'x-rapidapi-key': os.environ.get('RAPIDAPI_API_KEY'),
             'x-rapidapi-host': "restcountries-v1.p.rapidapi.com"
         }
 

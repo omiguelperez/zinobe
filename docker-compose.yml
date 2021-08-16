@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+
+  zinobe-test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: zinobe_test_python
+    container_name: python
+    volumes:
+      - .:/app:z
+    environment:
+      RAPIDAPI_API_KEY: dZJdE38zcSmshF0qIlzTAukFIp0Zp1LzigwjsnXt2HLeX0BNRU  # should be in non-versioned env file
+    command: python main.py

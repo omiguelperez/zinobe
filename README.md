@@ -1,5 +1,7 @@
 # zinobe
 
+## Test description
+
 |  Region | City Name |  Languaje | Time  |
 |---|---|---|---|
 |  Africa | Angola  |  AF4F4762F9BD3F0F4A10CAF5B6E63DC4CE543724 | 0.23 ms  |
@@ -23,3 +25,35 @@ Desarrolle una aplicacion en python que genere la tabla anterior teniendo las si
 * No usa famework
 * Entrega Test Unitarios
 * Presenta un diseño de su solucion.
+
+
+## Run
+
+This app is dockerized, you can run it with the following command:
+
+`docker-compose up`
+
+Once you run this command you will see in the console an output like that:
+
+```bash
+omiguelperez/zinobe [ docker-compose up                                                                                             main * ] 11:08 PM
+Starting python ... done
+Attaching to python
+python         | total time: 1.9329781532287598
+python         | average time: 0.32216302553812665
+python         | min time: 0.28493309020996094
+python         | max time: 0.3455798625946045
+python exited with code 0
+```
+
+Also, two files will be created in the project root:
+
+- `data.json` this file contains formatted execution results for first region's countries.
+- `db.sqlite3` the db contains all execution logs through the time
+
+## Test
+
+You must run the tests inside the docker container with the command bellow:
+
+`docker-compose run --rm python pytest`
+
