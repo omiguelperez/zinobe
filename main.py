@@ -1,3 +1,4 @@
+from src.output_generators import ConsoleTimeResume, JSONResult, SQLiteResult
 from src.services import CountriesETL
 from src.helpers import RapidAPIClient, RESTCountriesClient
 from src.models import db, CountryData
@@ -12,6 +13,12 @@ if __name__ == '__main__':
 
     # Run process
     etl = CountriesETL(
+        outputs=[
+            ConsoleTimeResume,
+            JSONResult,
+            SQLiteResult,
+        ],
+        # Custom ETL services
         regions_service=RapidAPIClient(),
         countries_service=RESTCountriesClient(),
     )
