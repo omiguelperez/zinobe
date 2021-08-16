@@ -1,28 +1,16 @@
-import os
-import sqlite3
 from datetime import datetime
-from sqlite3.dbapi2 import Error
+
+from peewee import Model, SqliteDatabase, CharField, FloatField, DateTimeField
+
+db = SqliteDatabase('out/db.sqlite3')
 
 
-def get_connection():
-    connection = sqlite3.connect('out/db.sqlite3')
-    return connection
+class CountryData(Model):
+    country_name = CharField()
+    city_name = CharField()
+    language = CharField()
+    time = FloatField()
+    created_at = DateTimeField(default=datetime.now)
 
-
-def migrate_countrydata_table(con):
-    c = con.cursor()
-    try:
-        c.execute("CREATE TABLE IF NOT EXISTS zinobe_countrydata (country_name text, city_name text, language text, time real, created_at datetime)")
-        con.commit()
-    except Error:
-        print('There was an error creating countrydata table')
-
-
-def save_countrydata_rows(rows):
-    for row in rows:
-        conn.execute(f'INSERT INTO zinobe_countrydata (country_name, city_name, language, time, created_at) VALUES (?, ?, ?, ?, ?)', (row['country_name'], row['city_name'], row['language'], row['time'], datetime.now()))
-        conn.commit()
-
-
-conn = get_connection()
-migrate_countrydata_table(conn)
+    class Meta:
+        database = db

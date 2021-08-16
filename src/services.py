@@ -1,11 +1,10 @@
 import json
-import os
 
 import pandas as pd
 
 from src.encoding import encode_to_sha1
 from src.decorators import add_execution_time
-from src.models import save_countrydata_rows
+from src.models import CountryData
 
 
 class CountriesETL:
@@ -49,7 +48,8 @@ class CountriesETL:
         with open('out/data.json', 'w') as file:
             json.dump(rows, file, indent=2, ensure_ascii=False)
 
-        save_countrydata_rows(rows)
+        rows_to_create = [CountryData(**row) for row in rows]
+        CountryData.bulk_create(rows_to_create)
 
     def execute(self):
         # Extract and process
